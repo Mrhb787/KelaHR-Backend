@@ -123,7 +123,7 @@ class GoogleWorksheetDB:
         """
         Gets all the data from the Worksheet
         """
-        return self.worksheet.get_all_values()
+        return self.get_worksheet.get_all_values()
 
     def is_existing_data(self, key: str) -> Optional[TransformDataStructure]:
         """
@@ -164,3 +164,11 @@ class GoogleWorksheetDB:
         except Exception as exc:  # pylint: disable=broad-except
             print(exc)
         return False
+
+    def refresh_instance(self) -> None:
+        """
+        Refreshes the worksheet data
+        """
+        self.worksheet_data = self.get_worksheet_data
+        self.worksheet_data_dict = tranform_raw_data_to_dict(self.worksheet_data)
+        self.worksheet_data_list = tranform_raw_data_to_list(self.worksheet_data)
